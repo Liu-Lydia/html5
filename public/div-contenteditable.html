@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>div-contenteditable</title>
+  </head>
+  <body>
+    <!-- 備註欄可以用,點選輸入 -->
+    <div id="info" contenteditable="true">123</div>
+    <button onclick="Save()">Save</button>
+
+    <script>
+      const info = document.querySelector("#info");
+      // info.addEventListener('input', function(event){
+      //     console.log(info.innerText)
+      // });
+      function Save() {
+        const data = info.innerHTML;
+        localStorage.setItem('tmp-content', JSON.stringify({data}));
+      }
+
+      (function(){
+          const data = localStorage.getItem('tmp-content');
+          let json;
+          if(data){
+              try{
+                  json = JSON.parse(data);
+              }catch(ex){
+                  return;
+              }
+              info.innerHTML = json.data;
+          }
+      })();
+    </script>
+  </body>
+</html>

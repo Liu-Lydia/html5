@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        svg > path{
+            fill: greenyellow;
+            stroke: hotpink;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+<svg version="1.1" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <path transform="matrix(.77536 0 0 .7517 14.491 13.916)" d="m60.937 53.988-23.634-3.7739-16.507 17.33-3.7141-23.643-21.583-10.344 21.339-10.839 3.1686-23.723 16.902 16.945 23.541-4.3172-10.892 21.311z" fill="#00f" fill-rule="evenodd" stroke-width=".26458"/>
+</svg>
+
+<script>
+    const star = document.querySelector('svg > path');
+    star.addEventListener('mouseover', function(){
+        star.style.fill = '#434341';
+    });
+    star.addEventListener('mouseout', function(){
+        star.style.fill = 'greenyellow';
+    });
+</script>
+
+</body>
+</html>
