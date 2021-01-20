@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="connect">connect</button>
+    <button id="disconnect">disconnect</button>
+    <br/>
+    <input type="text" id="myinput">
+    <button id="send">send</button>
+    <div id="info"></div>
+
+    <script>
+const info = document.querySelector('#info');
+const myOpen = event =>{
+    info.innerHTML += '--- connected ---<br/>';
+}
+const myMsg = event =>{
+    info.innerHTML += `msg: ${event.data}<br/>`;
+}
+const myClose = event =>{
+    info.innerHTML += '--- closed ---<br/>';
+}
+
+let socket;
+
+        document.addEventListener('click', function(event){
+            console.log(event.target.id);
+            switch(event.target.id){
+                case 'connect':
+                    if(socket && socket.readyState===WebSocket.OPEN)
+                    return;
+                    socket = new WebSocket('ws://' + location.host);
+                    socket.addEventListener('open', myOpen);
+                    socket.addEventListener('message', myMsg);
+                    socket.addEventListener('close', myClose);
+                break;
+                case 'disconnect':
+                    if(socket && socket.readyState===WebSocket.OPEN)
+                    socket.close();
+                break;
+                case 'send':
+                if(socket && socket.readyState===WebSocket.OPEN)
+                    socket.send(document.querySelector('#myinput').value);
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>
